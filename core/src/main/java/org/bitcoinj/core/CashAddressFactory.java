@@ -21,6 +21,8 @@ import org.bitcoinj.script.Script;
 
 import javax.annotation.Nullable;
 
+import java.util.HashMap;
+
 import static com.google.common.base.Preconditions.checkArgument;
 import static org.bitcoinj.core.Address.isAcceptableVersion;
 import static org.bitcoinj.core.CashAddressHelper.ConvertBits;
@@ -66,9 +68,9 @@ public class CashAddressFactory {
     public CashAddress getFromFormattedAddress(NetworkParameters params, String addr) throws AddressFormatException {
         CashAddressValidator cashAddressValidator = CashAddressValidator.create();
 
-        Pair<String, byte[]> pair = CashAddressHelper.decodeCashAddress(addr, params.getCashAddrPrefix());
-        String prefix = pair.getKey();
-        byte[] payload = pair.getValue();
+        HashMap<String, byte[]> pair = CashAddressHelper.decodeCashAddress(addr, params.getCashAddrPrefix());
+        String prefix = (String) pair.keySet().toArray()[0];
+        byte[] payload = pair.get(prefix);
 
         cashAddressValidator.checkValidPrefix(params, prefix);
         cashAddressValidator.checkNonEmptyPayload(payload);

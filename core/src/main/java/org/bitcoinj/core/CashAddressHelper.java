@@ -17,6 +17,9 @@ package org.bitcoinj.core;
 
 import javafx.util.Pair;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Hash Engineering on 1/19/2018.
  */
@@ -216,7 +219,7 @@ public class CashAddressHelper {
         return ret.toString();
     }
 
-    public static Pair<String, byte[]> decodeCashAddress(String str, String defaultPrefix) {
+    public static HashMap<String, byte[]> decodeCashAddress(String str, String defaultPrefix) {
         // Go over the string and do some sanity checks.
         boolean lower = false, upper = false, hasNumber = false;
         int prefixSize = 0;
@@ -289,7 +292,9 @@ public class CashAddressHelper {
 
         byte[] result = new byte[values.length - 8];
         System.arraycopy(values, 0, result, 0, values.length - 8);
-        return new Pair(prefix.toString(), result);
+        HashMap<String, byte[]> hm = new HashMap<String, byte[]>();
+        hm.put(prefix.toString(), result);
+        return hm;
     }
 
     static public byte[] packAddressData(byte[] payload, byte type) {
