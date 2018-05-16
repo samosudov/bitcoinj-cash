@@ -15,8 +15,6 @@
  */
 package org.bitcoinj.core;
 
-import javafx.util.Pair;
-
 import java.util.HashMap;
 import java.util.Map;
 

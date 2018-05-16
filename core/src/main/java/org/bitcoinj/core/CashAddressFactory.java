@@ -15,7 +15,6 @@
  */
 package org.bitcoinj.core;
 
-import javafx.util.Pair;
 import org.bitcoinj.params.Networks;
 import org.bitcoinj.script.Script;
 
